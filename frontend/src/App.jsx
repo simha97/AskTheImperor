@@ -7,13 +7,16 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
+  const apiUrl = import.meta.env.VITE_API_URL
+
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setLoading(true)
     setError("")
     setAnswer("")
 
-    fetch(`http://127.0.0.1:8000/ask?query=${encodeURIComponent(question)}`)
+    fetch(`${apiUrl}/ask?query=${encodeURIComponent(question)}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Server error")
