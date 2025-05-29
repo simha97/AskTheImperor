@@ -22,7 +22,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[        
         "http://localhost:5173",
-        "http://127.0.0.1:5173"],  # Or ["*"] for all origins (not recommended in production)
+        "http://127.0.0.1:5173"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -30,15 +30,15 @@ app.add_middleware(
 
 
 @app.get("/ask")
-async def ask_question(query: str = Query(..., description="Question about Marcus Aurelius book")):
-    # 1. Create embedding vector for the query
+async def ask_question(query: str = Query(..., description="Question to Marcus Aurelius")):
+    # embedding  the query
     embedding_response = client.embeddings.create(
         model="text-embedding-ada-002",
         input=query
     )
     query_embedding = embedding_response.data[0].embedding
 
-    # 2. Call Supabase RPC function to find nearest chunk
+    # Call Supabase RPC function to find nearest chunk
     result = supabase.rpc(
         "match_marcus_book",
         {
@@ -53,7 +53,7 @@ async def ask_question(query: str = Query(..., description="Question about Marcu
     matched_content = result.data[0]["content"]
 
 
-    # 3. Prepare chat messages with system prompt and user content
+    # prepare an answer with openAI
     messages = [
         {
             "role": "system",
@@ -71,7 +71,6 @@ async def ask_question(query: str = Query(..., description="Question about Marcu
         },
     ]
 
-    # 4. Create chat completion with GPT-4
     chat_response = client.chat.completions.create(
         model="gpt-4",
         messages=messages,

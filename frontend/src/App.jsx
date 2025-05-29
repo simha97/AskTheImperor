@@ -44,7 +44,7 @@ function App() {
 
           </div>
           <p className="text-lg font-serif text-amber-800 italic">
-            Words of wisdom from the Philosopher Emperor, based on his reflections in Meditations.
+            Words of wisdom from the Philosopher Emperor, based on his reflections in <span className='not-italic bold'>Meditations</span>.
           </p>
           <div className="mt-6 h-1 bg-amber-700 w-24 mx-auto"></div>
         </div>
@@ -109,9 +109,29 @@ function App() {
 
         {/* Decorative elements */}
           
-          <div className="text-xs text-center font-serif text-amber-700 italic">
+          <div className="text-lg text-center font-serif text-amber-700 italic mb-5">
             Wisdom · Justice · Fortitude · Temperance
           </div>
+          <p className="text-sm text-center font-serif text-amber-700 italic mt-4">
+  A website by Simon Hallak ·{" "}
+  <a
+    href="https://github.com/simha97"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="underline hover:text-amber-900"
+  >
+    GitHub
+  </a>{" "}
+  ·{" "}
+  <a
+    href="https://www.simonhallak.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="underline hover:text-amber-900"
+  >
+    Portfolio
+  </a>
+</p>
           
       </div>
     </div>
